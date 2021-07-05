@@ -1,0 +1,70 @@
+{
+    "ACCOUNT_ID": {
+        "SHARED_SERVICES": "<SHARED_SERVICES_ACCOUNT_ID>",
+        "SHARED_NETWORKING": "<SHARED_NETWORKING_ACCOUNT_ID>",
+        "MASTER_ACCOUNT": "<MASTER_ACCOUNT_ID>",
+        "DEV2": "<DEV2_ACCOUNT_ID>",
+        "DEV3": "<DEV3_ACCOUNT_ID>"
+    },
+    "AZ": [
+        "ap-southeast-2a",
+        "ap-southeast-2b",
+        "ap-southeast-2c"
+    ],
+    "ORGANIZATION_ID": "<AWS_ORGANIZATION_ID>",
+    "REPO_NAME": "InfrastructurePipeline",
+    "SOURCE_VERSION": "main",
+    "STATE_BUCKET": "<S3_STATE_BUCKET>",
+    "ACCOUNT": {
+        "MASTER_ACCOUNT": {
+                "ID": "<MASTER_ACCOUNT_ID>"
+            }, 
+        "SHARED_SERVICES": {
+                "ID": "<SHARED_SERVICES_ACCOUNT_ID>"
+            },
+        "SHARED_NETWORKING": {
+            "ID": "<SHARED_NETWORKING_ACCOUNT_ID>",
+            "VPC_CIDR": "10.0.0.0/16",
+            "PRIVATE_SUBNET": [
+                "10.0.1.0/24",
+                "10.0.2.0/24",
+                "10.0.3.0/24"
+            ],
+            "PUBLIC_SUBNET": [
+                "10.0.4.0/24",
+                "10.0.5.0/24",
+                "10.0.6.0/24"
+            ]
+        },
+        "DEV2": {
+            "ID": "<DEV2_ACCOUNT_ID>",
+            "VPC_CIDR": "10.1.0.0/16",
+            "PRIVATE_SUBNET": [
+                "10.1.1.0/24",
+                "10.1.2.0/24",
+                "10.1.3.0/24"
+            ],
+            "PUBLIC_SUBNET": [
+                "10.1.4.0/24",
+                "10.1.5.0/24",
+                "10.1.6.0/24"
+            ]
+        },
+        "DEV3": {
+            "ID": "<DEV3_ACCOUNT_ID>",
+            "VPC_CIDR": "10.2.0.0/16",
+            "PRIVATE_SUBNET": [
+                "10.2.1.0/24",
+                "10.2.2.0/24",
+                "10.2.3.0/24"
+            ],
+            "PUBLIC_SUBNET": [
+                "10.2.4.0/24",
+                "10.2.5.0/24",
+                "10.2.6.0/24"
+            ]
+        }
+    }
+    
+    
+}

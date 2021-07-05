@@ -1,0 +1,6 @@
+name: IAMRoleDev2
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: Stack to create IAM role

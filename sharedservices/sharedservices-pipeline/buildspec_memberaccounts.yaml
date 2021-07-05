@@ -1,0 +1,36 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # pulumi
+      - curl -fsSL https://get.pulumi.com/ | sh
+      - export PATH=$PATH:$HOME/.pulumi/bin
+      - pulumi login s3://$STATE_BUCKET 
+      - ROLE="$(aws sts assume-role --role-arn arn:aws:iam::$SHAREDNETWORKING_ACCOUNT_ID:role/codebuild_role_crossaccount --role-session-name deploy --region ap-southeast-2 --endpoint-url https://sts.ap-southeast-2.amazonaws.com)" 
+      - export ROLE
+      - echo $ROLE
+      - aws sts get-caller-identity
+      - export "AWS_ACCESS_KEY_ID=$(echo "${ROLE}" | jq -re '.Credentials.AccessKeyId')"
+      - export "AWS_SECRET_ACCESS_KEY=$(echo "${ROLE}" | jq -r '.Credentials.SecretAccessKey')"
+      - export "AWS_SESSION_TOKEN=$(echo "${ROLE}" | jq -r '.Credentials.SessionToken')"
+      - export "TGW_ID=$(aws ssm get-parameters --names "shared-networking-tgw-id" --with-decryption --query "Parameters[0].Value" | tr -d '"')"
+      - echo $TGW_ID
+      - export "AWS_ACCESS_KEY_ID="
+      - export "AWS_SECRET_ACCESS_KEY="
+      - export "AWS_SESSION_TOKEN="
+      - aws sts get-caller-identity
+      - TEMP_ROLE="$(aws sts assume-role --role-arn arn:aws:iam::$ACCOUNT_ID:role/codebuild_role_crossaccount --role-session-name deploy --region ap-southeast-2 --endpoint-url https://sts.ap-southeast-2.amazonaws.com)" 
+      - export TEMP_ROLE
+      - echo $TEMP_ROLE
+      - aws sts get-caller-identity
+      - export "AWS_ACCESS_KEY_ID=$(echo "${TEMP_ROLE}" | jq -re '.Credentials.AccessKeyId')"
+      - export "AWS_SECRET_ACCESS_KEY=$(echo "${TEMP_ROLE}" | jq -r '.Credentials.SecretAccessKey')"
+      - export "AWS_SESSION_TOKEN=$(echo "${TEMP_ROLE}" | jq -r '.Credentials.SessionToken')"
+  build:
+    commands:
+      - cd $ACCOUNT/$STACK
+      - pip install --upgrade pip setuptools wheel
+      - pip install -r requirements.txt
+      - chmod +x ./../../update_pulumi_stack.sh
+      - ./../../update_pulumi_stack.sh

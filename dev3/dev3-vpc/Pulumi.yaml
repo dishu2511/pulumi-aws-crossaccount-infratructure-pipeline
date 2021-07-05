@@ -1,0 +1,6 @@
+name: dev3-vpc
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: Stack to create vpc in dev3

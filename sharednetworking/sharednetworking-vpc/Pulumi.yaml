@@ -1,0 +1,6 @@
+name: sharednetworking-vpc
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: Stack to create sharednetworking infrastructure
