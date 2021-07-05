@@ -1,5 +1,0 @@
-Pre req
-S3 bucket to store State file, Bucket policy which allows access to other accounts
-IAM role in each account which Codebuild role will assume
-Pipeline stack needs to be deployed first.
-RAM must be enabled for sharing with AWS Orgnaization. (more info: https://docs.aws.amazon.com/organizations/latest/userguide/services-that-can-integrate-ram.html)
