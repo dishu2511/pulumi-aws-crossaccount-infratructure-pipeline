@@ -199,9 +199,6 @@ codebuild_project_memberaccounts = aws.codebuild.Project(
                 name="PULUMI_CONFIG_PASSPHRASE", value=""
             ),
             aws.codebuild.ProjectEnvironmentEnvironmentVariableArgs(
-                name="ACCOUNT_ID", value=DEV2
-            ),
-            aws.codebuild.ProjectEnvironmentEnvironmentVariableArgs(
                 name="SHAREDNETWORKING_ACCOUNT_ID", value=SHAREDNETWORKING_ACCOUNT_ID
             ),
             aws.codebuild.ProjectEnvironmentEnvironmentVariableArgs(
@@ -401,7 +398,7 @@ codepipeline = aws.codepipeline.Pipeline(
                                 },
                                 {
                                     "name": "ACCOUNT_ID",
-                                    "value":data['ACCOUNT'][name.upper()],
+                                    "value":f"{data['ACCOUNT'][name.upper()]['ID']}",
                                     "type": "PLAINTEXT",
                                 },
                                 {
